@@ -1,0 +1,669 @@
+/*
+ * Mapa da Rede: estilos próprios (prefixo .cmr-), portados de dist/css/_p-map.css do tema.
+ * Cores do theme.json do tema com valores de reserva, para não depender dele.
+ */
+
+.cmr-app,
+.cmr-pagina {
+	--cmr-primaria: var(--wp--preset--color--primary-pure, #07346B);
+	--cmr-fundo-painel: var(--wp--preset--color--high-light, #F5F5F5);
+	--cmr-fundo-imagem: var(--wp--preset--color--secondary-light, #6BBFFF);
+	--cmr-topo: 123px;
+}
+
+@media (min-width: 992px) {
+	.cmr-app,
+	.cmr-pagina {
+		--cmr-topo: 190px;
+	}
+}
+
+/* Cabeçalho fixo do tema: mesmo deslocamento que o tema aplica à página do mapa antigo. */
+html body.cmr-pagina {
+	overflow-anchor: none;
+	margin-top: var(--cmr-topo) !important;
+}
+
+/*
+ * Proteção contra estilos genéricos do tema (ex.: ".page h2 { font-size: 2em; padding-top: 40px }"),
+ * com especificidade maior que as regras do tema.
+ */
+.cmr-app .cmr-painel :is(h1, h2, h3, p, ul) {
+	letter-spacing: normal;
+	padding-top: 0;
+	text-transform: none;
+}
+
+.cmr-sr {
+	border: 0;
+	clip: rect(0, 0, 0, 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+.cmr-carregando {
+	padding: 2rem;
+	text-align: center;
+}
+
+/* Painel: lista à esquerda (desktop) ou gaveta inferior (mobile) + mapa. */
+.cmr-painel {
+	overflow-anchor: none;
+	--cmr-altura: calc(100vh - var(--cmr-topo));
+	background-color: #20201F;
+	height: var(--cmr-altura);
+	overflow: hidden;
+	position: relative;
+}
+
+@media (min-width: 992px) {
+	.cmr-painel {
+		display: grid;
+		grid-template-columns: 37.5rem 1fr;
+	}
+}
+
+@media (min-width: 992px) and (max-width: 1440px) {
+	.cmr-painel {
+		grid-template-columns: 28rem 1fr;
+	}
+}
+
+@media (min-width: 992px) and (max-width: 1280px) {
+	.cmr-painel {
+		grid-template-columns: 22rem 1fr;
+	}
+}
+
+.cmr-painel__caixa {
+	background-color: var(--cmr-fundo-painel);
+	border-radius: 1rem 1rem 0 0;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	padding: 0.5rem 1rem 1rem;
+	/* 100% do painel (100vw incluiria a barra de rolagem e vazaria para o lado). */
+	width: 100%;
+}
+
+@media (min-width: 992px) {
+	.cmr-painel__caixa {
+		border-radius: 0;
+		height: var(--cmr-altura);
+		padding: 2rem;
+		width: 100%;
+	}
+}
+
+@media (max-width: 991.98px) {
+	.cmr-painel__caixa {
+		bottom: 0;
+		left: 0;
+		position: absolute;
+		z-index: 100;
+	}
+}
+
+.cmr-painel__cabecalho {
+	margin-bottom: 1.5rem;
+}
+
+.cmr-painel__alternar {
+	background: none;
+	border: 0;
+	border-bottom: 1px solid #869B8D;
+	color: var(--cmr-primaria);
+	cursor: pointer;
+	display: block;
+	font: inherit;
+	font-size: 1.25rem;
+	font-weight: bold;
+	margin: 0 0 1rem;
+	padding: 0 0 0.5rem;
+	text-align: center;
+	width: 100%;
+}
+
+.cmr-painel__alternar::before {
+	background: #D9D9D9;
+	border-radius: 0.125rem;
+	content: "";
+	display: block;
+	height: 0.25rem;
+	margin: 0 auto 0.5rem;
+	width: 4rem;
+}
+
+@media (min-width: 992px) {
+	.cmr-painel__alternar {
+		cursor: default;
+		pointer-events: none;
+	}
+
+	.cmr-painel__alternar::before {
+		display: none;
+	}
+}
+
+.cmr-painel__filtros {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.cmr-painel__linha {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+/* "Exibindo" e o filtro lado a lado já a partir de 600px (celular deitado, tablet): poupa altura. */
+@media (min-width: 600px) {
+	.cmr-painel__linha {
+		align-items: flex-end;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	.cmr-painel__linha > * {
+		flex: 1;
+	}
+}
+
+.cmr-campo {
+	display: block;
+	width: 100%;
+}
+
+.cmr-campo > span {
+	display: block;
+	margin-bottom: 0.25rem;
+}
+
+.cmr-app .cmr-campo select,
+.cmr-app .cmr-campo input,
+.cmr-app .cmr-filtro__botao {
+	background-color: #FFFFFF;
+	border: 1px solid #DDD;
+	border-radius: 0.5rem;
+	box-sizing: border-box;
+	color: inherit;
+	display: block;
+	font: inherit;
+	padding: 0.5rem 1rem;
+	text-align: left;
+	width: 100%;
+}
+
+.cmr-painel__contagem {
+	font-size: 0.875rem;
+	margin: 0;
+	min-height: 1.25em;
+}
+
+.cmr-painel__lista {
+	display: grid;
+	flex: 1;
+	gap: 2rem 1rem;
+	grid-auto-rows: min-content;
+	grid-template-columns: repeat(2, calc(50% - 0.5rem));
+	min-height: 0;
+	overflow: hidden auto;
+}
+
+@media (max-width: 991.98px) {
+	.cmr-painel__lista {
+		flex: 1 1 auto;
+		grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+		/* Telas baixas (celular deitado): a gaveta inteira rola e a lista mantém uma altura útil. */
+		min-height: 12rem;
+	}
+}
+
+.cmr-painel__mais {
+	grid-column: 1 / -1;
+	height: 1px;
+}
+
+.cmr-aviso {
+	grid-column: 1 / -1;
+	margin: 0;
+}
+
+/* Mobile: gaveta recolhida mostra só o título. */
+@media (max-width: 991.98px) {
+	.cmr-painel:not(.cmr-painel--expandido) .cmr-painel__caixa {
+		padding-bottom: 0.5rem;
+	}
+
+	.cmr-painel:not(.cmr-painel--expandido) .cmr-painel__cabecalho {
+		margin: 0;
+	}
+
+	.cmr-painel:not(.cmr-painel--expandido) .cmr-painel__alternar {
+		border: 0;
+		margin: 0;
+		padding: 0;
+	}
+
+	.cmr-painel:not(.cmr-painel--expandido) .cmr-painel__filtros,
+	.cmr-painel:not(.cmr-painel--expandido) .cmr-painel__lista {
+		display: none;
+	}
+
+	.cmr-painel--expandido .cmr-painel__caixa {
+		border-radius: 0;
+		height: var(--cmr-altura);
+		overflow-y: auto;
+		overscroll-behavior: contain;
+	}
+
+	.cmr-painel--expandido .cmr-painel__cabecalho {
+		flex: none;
+	}
+
+	/* Créditos do mapa acima da gaveta recolhida (que cobre os últimos 3,75rem). */
+	.cmr-app .maplibregl-ctrl-bottom-right {
+		bottom: 3.75rem;
+	}
+}
+
+/* Filtro de categorias. */
+.cmr-filtro {
+	position: relative;
+}
+
+.cmr-app .cmr-filtro__botao {
+	align-items: center;
+	cursor: pointer;
+	display: flex;
+	gap: 0.5rem;
+	padding-inline: 0.75rem;
+	white-space: nowrap;
+}
+
+.cmr-filtro__botao > span {
+	flex: 1;
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.cmr-filtro__botao > img {
+	flex: none;
+}
+
+.cmr-filtro__lista,
+.cmr-filtro__lista li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.cmr-filtro__lista {
+	background-color: #FFFFFF;
+	border: 1px solid #DDD;
+	border-radius: 0 0 0.5rem 0.5rem;
+	border-top: 0;
+	box-sizing: border-box;
+	display: none;
+	left: 0;
+	padding: 0.5rem 1rem;
+	position: absolute;
+	right: 0;
+	top: 100%;
+	z-index: 2;
+}
+
+.cmr-filtro__lista label {
+	align-items: center;
+	color: var(--cmr-primaria);
+	cursor: pointer;
+	display: flex;
+	font-size: 0.875rem;
+	gap: 0.5rem;
+	padding: 0.125rem 0;
+}
+
+.cmr-filtro--aberto .cmr-filtro__botao {
+	border-bottom-color: transparent;
+	border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.cmr-filtro--aberto .cmr-filtro__lista {
+	display: block;
+}
+
+.cmr-filtro--aberto .cmr-filtro__seta {
+	transform: rotate(180deg);
+}
+
+/* Cards. */
+.cmr-cartao {
+	line-height: 1.35;
+	position: relative;
+}
+
+
+.cmr-cartao__marcador {
+	left: 0.5rem;
+	position: absolute;
+	top: 0.5rem;
+	z-index: 1;
+}
+
+.cmr-cartao__imagem-botao {
+	background: none;
+	border: 0;
+	cursor: pointer;
+	display: block;
+	padding: 0;
+	width: 100%;
+}
+
+.cmr-cartao__imagem {
+	aspect-ratio: 16 / 9;
+	background-color: var(--cmr-fundo-imagem);
+	border-radius: 0.5rem;
+	display: block;
+	height: auto;
+	object-fit: cover;
+	width: 100%;
+}
+
+.cmr-cartao__meta,
+.cmr-cartao__instituicao,
+.cmr-cartao__sem-local {
+	font-size: 0.8125rem;
+	margin: 0.5rem 0 0;
+}
+
+.cmr-cartao__sem-local {
+	font-style: italic;
+	opacity: 0.75;
+}
+
+/* Painel lateral de 22rem (992 a 1280px): "Exibindo" e filtro empilhados, margens menores. */
+@media (min-width: 992px) and (max-width: 1280px) {
+	.cmr-painel__caixa {
+		padding: 1.5rem 1.25rem;
+	}
+
+	.cmr-painel__linha {
+		align-items: stretch;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.cmr-painel__filtros {
+		gap: 0.75rem;
+	}
+}
+
+/*
+ * Painel lateral de 22–28rem (992 a 1440px, inclui notebooks 1366×768): duas
+ * colunas de cards ficariam com 140–180px. Uma coluna de cards compactos,
+ * com a miniatura à esquerda.
+ */
+@media (min-width: 992px) and (max-width: 1440px) {
+	.cmr-painel__lista {
+		gap: 1.25rem;
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.cmr-cartao {
+		align-items: start;
+		column-gap: 0.75rem;
+		display: grid;
+		grid-template-columns: 6.5rem minmax(0, 1fr);
+	}
+
+	.cmr-cartao > * {
+		grid-column: 2;
+	}
+
+	.cmr-cartao > .cmr-cartao__imagem-botao,
+	.cmr-cartao > .cmr-cartao__imagem {
+		grid-column: 1;
+		grid-row: 1 / span 6;
+	}
+
+	/* Posicionado sobre a miniatura (em grid, a área do item vira a referência). */
+	.cmr-cartao > .cmr-cartao__marcador {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	.cmr-cartao__imagem {
+		aspect-ratio: 4 / 3;
+	}
+
+	.cmr-cartao__marcador {
+		height: 20px;
+		left: 0.25rem;
+		top: 0.25rem;
+		width: 20px;
+	}
+
+	.cmr-cartao__meta {
+		margin-top: 0;
+	}
+
+	.cmr-app .cmr-cartao .cmr-cartao__titulo {
+		font-size: 1rem;
+		margin: 0.125rem 0 0.25rem;
+	}
+
+	.cmr-cartao .cmr-cartao__instituicao {
+		margin-top: 0;
+	}
+
+	.cmr-cartao .cmr-cartao__resumo {
+		font-size: 0.875rem;
+		-webkit-line-clamp: 2;
+	}
+}
+
+.cmr-app .cmr-cartao__titulo {
+	overflow-wrap: anywhere;
+	font-size: 1.25rem;
+	margin: 0.25rem 0 0.5rem;
+}
+
+.cmr-app .cmr-cartao__titulo a {
+	color: var(--cmr-primaria);
+}
+
+.cmr-cartao__resumo {
+	display: -webkit-box;
+	margin: 0;
+	overflow: hidden;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+}
+
+/* Mapa. */
+.cmr-painel__mapa {
+	height: var(--cmr-altura);
+	position: relative;
+}
+
+.cmr-mapa {
+	height: 100%;
+	width: 100%;
+}
+
+.cmr-legenda {
+	/* Mobile: acima da gaveta (3,75rem) e dos créditos do mapa. */
+	bottom: 6.25rem;
+	font-size: 0.875rem;
+	left: 1rem;
+	min-width: 12.5rem;
+	position: absolute;
+	width: fit-content;
+	z-index: 2;
+}
+
+/* Desktop: acima dos créditos do mapa (canto inferior). */
+@media (min-width: 992px) {
+	.cmr-legenda {
+		bottom: 2.5rem;
+	}
+}
+
+.cmr-legenda__cabecalho,
+.cmr-legenda__conteudo {
+	box-sizing: border-box;
+	padding: 0.5rem 1rem;
+}
+
+.cmr-app .cmr-legenda__cabecalho {
+	background-color: var(--cmr-primaria);
+	border-radius: 0.5rem 0.5rem 0 0;
+	color: #FFFFFF;
+	font-size: inherit;
+	font-weight: bold;
+	line-height: 1.5;
+	margin: 0;
+	padding: 0;
+}
+
+/* O cabeçalho inteiro é o botão (alvo de toque maior no celular). */
+.cmr-app .cmr-legenda__cabecalho button {
+	align-items: center;
+	background: transparent;
+	border: 0;
+	border-radius: inherit;
+	box-sizing: border-box;
+	color: inherit;
+	cursor: pointer;
+	display: flex;
+	font: inherit;
+	gap: 1rem;
+	justify-content: space-between;
+	min-height: 2.5rem;
+	padding: 0.5rem 1rem;
+	text-align: left;
+	width: 100%;
+}
+
+.cmr-app .cmr-legenda__cabecalho button:focus-visible {
+	outline: 2px solid #FFFFFF;
+	outline-offset: -4px;
+}
+
+/* Especificidade acima da proteção ":is(…, ul) { padding-top: 0 }" do topo do arquivo. */
+.cmr-app .cmr-legenda .cmr-legenda__conteudo {
+	padding: 0.875rem 1rem;
+}
+
+.cmr-legenda__conteudo {
+	background-color: #FFFFFF;
+	border-radius: 0 0 0.5rem 0.5rem;
+	color: var(--cmr-primaria);
+	margin: 0;
+}
+
+.cmr-legenda__conteudo li {
+	align-items: center;
+	display: flex;
+	gap: 1rem;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.cmr-legenda__conteudo li + li {
+	margin-top: 0.375rem;
+}
+
+.cmr-legenda__anel {
+	border: 1.5px solid var(--cmr-primaria);
+	border-radius: 50%;
+	box-sizing: border-box;
+	display: inline-block;
+	flex: none;
+	height: 24px;
+	opacity: 0.7;
+	width: 24px;
+}
+
+.cmr-legenda--recolhida .cmr-legenda__cabecalho {
+	border-radius: 0.5rem;
+}
+
+.cmr-legenda--recolhida .cmr-legenda__conteudo {
+	display: none;
+}
+
+/* Controles e popup do MapLibre. */
+.cmr-app .maplibregl-ctrl button.maplibregl-ctrl-zoom-in .maplibregl-ctrl-icon {
+	background-image: url("data:image/svg+xml;charset=utf-8,<svg width='29' height='29' viewBox='0 0 29 29' xmlns='http://www.w3.org/2000/svg' fill='%2307346B'><path d='M14.5 8.5c-.75 0-1.5.75-1.5 1.5v3h-3c-.75 0-1.5.75-1.5 1.5S9.25 16 10 16h3v3c0 .75.75 1.5 1.5 1.5S16 19.75 16 19v-3h3c.75 0 1.5-.75 1.5-1.5S19.75 13 19 13h-3v-3c0-.75-.75-1.5-1.5-1.5z'/></svg>");
+}
+
+.cmr-app .maplibregl-ctrl button.maplibregl-ctrl-zoom-out .maplibregl-ctrl-icon {
+	background-image: url("data:image/svg+xml;charset=utf-8,<svg width='29' height='29' viewBox='0 0 29 29' xmlns='http://www.w3.org/2000/svg' fill='%2307346B'><path d='M10 13c-.75 0-1.5.75-1.5 1.5S9.25 16 10 16h9c.75 0 1.5-.75 1.5-1.5S19.75 13 19 13h-9z'/></svg>");
+}
+
+/* Popup acima da legenda (z-index 2). */
+.cmr-app .maplibregl-popup {
+	z-index: 3;
+}
+
+.cmr-app .maplibregl-popup-content {
+	color: var(--cmr-primaria);
+	font-family: inherit;
+	font-size: 1rem;
+	line-height: 1.5;
+	padding-inline-end: 1.75rem;
+}
+
+.cmr-popup__titulo {
+	color: inherit;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.cmr-popup__titulo:hover,
+.cmr-popup__titulo:focus {
+	text-decoration: underline;
+}
+
+.cmr-popup__meta,
+.cmr-popup__aviso {
+	font-size: 0.8125rem;
+	margin: 0.25rem 0 0;
+}
+
+.cmr-popup__aviso {
+	font-style: italic;
+	opacity: 0.8;
+}
+
+.cmr-aranha__folha {
+	background: #FFFFFF;
+	border: 0;
+	border-radius: 50%;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+	cursor: pointer;
+	height: 28px;
+	line-height: 0;
+	padding: 2px;
+	width: 28px;
+}
+
+.cmr-aranha__folha:focus-visible {
+	outline: 2px solid var(--cmr-primaria);
+	outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.cmr-filtro__seta {
+		transition: none;
+	}
+}

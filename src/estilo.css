@@ -207,13 +207,20 @@ html body.cmr-pagina {
 }
 
 .cmr-painel__lista {
+	/* Sombra suave em volta da lista: marca o limite da área que rola. */
+	border-radius: 0.75rem;
+	box-shadow: 0 0 0 1px rgba(7, 52, 107, 0.04), 0 1px 6px rgba(7, 52, 107, 0.08);
+	box-sizing: border-box;
 	display: grid;
 	flex: 1;
 	gap: 1rem;
 	grid-auto-rows: min-content;
 	grid-template-columns: repeat(2, calc(50% - 0.5rem));
+	/* Respiro para a sombra não ser cortada pelo contêiner. */
+	margin: 0 0.125rem 0.125rem;
 	min-height: 0;
 	overflow: hidden auto;
+	padding: 0.75rem;
 }
 
 @media (max-width: 991.98px) {

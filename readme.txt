@@ -2,7 +2,7 @@
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPL-2.0-or-later
 
 Mapa da Rede do Cemaden Educação com MapLibre GL JS, sem dependência do JEO.
@@ -103,6 +103,9 @@ Qualidade (PHPCS com WordPress Coding Standards 3, instalado via Composer fora d
 * Ícones dos marcadores: tema Cemaden Educação.
 
 == Changelog ==
+
+= 1.2.1 =
+* Lista de resultados com sombra suave em volta, marcando o limite da área que rola.
 
 = 1.2.0 =
 * Atualizações pelo painel do WordPress a partir das Releases do GitHub (`Update URI`, "Ver detalhes" com as notas da release).

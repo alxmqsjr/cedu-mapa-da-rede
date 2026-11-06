@@ -86,7 +86,7 @@ Qualidade (PHPCS com WordPress Coding Standards 3, instalado via Composer fora d
 
 == Créditos ==
 
-* Desenvolvimento: Alexandre Marques.
+* Desenvolvimento: Alexandre Marques (https://github.com/alxmqsjr).
 
 * MapLibre GL JS (BSD-3-Clause) e Vue (MIT): ver build/LICENSES.txt.
 * Sedes municipais: kelvins/municipios-brasileiros (MIT), dados do IBGE: ver data/LICENSE-municipios.txt.

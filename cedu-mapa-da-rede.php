@@ -1,11 +1,13 @@
 <?php
 /**
  * Plugin Name:       Cemaden Educação: Mapa da Rede
+ * Plugin URI:        https://github.com/alxmqsjr/cedu-mapa-da-rede
  * Description:       Mapa da Rede do Cemaden Educação (ações, inscrições, organizações e atividades da rede) com MapLibre GL JS, sem dependência do JEO.
  * Version:           1.1.3
  * Requires at least: 6.6
  * Requires PHP:      8.0
  * Author:            Alexandre Marques
+ * Author URI:        https://github.com/alxmqsjr
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       cedu-mapa-da-rede

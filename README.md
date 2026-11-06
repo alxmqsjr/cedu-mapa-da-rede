@@ -82,7 +82,7 @@ Detalhes técnicos (rota REST, cache, rota de CEP e changelog) estão no [readme
 
 ## Créditos
 
-- Desenvolvimento: **Alexandre Marques**.
+- Desenvolvimento: **[Alexandre Marques](https://github.com/alxmqsjr)**.
 - [MapLibre GL JS](https://github.com/maplibre/maplibre-gl-js) (BSD-3-Clause) e [Vue](https://github.com/vuejs/core) (MIT): ver `build/LICENSES.txt`.
 - Sedes municipais: [kelvins/municipios-brasileiros](https://github.com/kelvins/municipios-brasileiros) (MIT), dados do IBGE: ver `data/LICENSE-municipios.txt`.
 - Mapa base: © [OpenFreeMap](https://openfreemap.org/), © [OpenMapTiles](https://openmaptiles.org/), dados © [colaboradores do OpenStreetMap](https://www.openstreetmap.org/copyright).

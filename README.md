@@ -55,6 +55,18 @@ define( 'CEMADEN_MAPA_REDE_COR_AGUA', '#bceeff' );
 
 Se o mapa base não responder, o mapa troca sozinho para um mapa de reserva (OpenStreetMap).
 
+## Atualizações
+
+Depois de instalado, o plugin avisa sobre versões novas em **Painel → Atualizações** e na tela de **Plugins**, com o botão **Atualizar agora**, como os plugins do diretório oficial. As versões vêm da página [Releases](../../releases) deste repositório.
+
+Para publicar uma versão:
+
+1. Suba a versão no cabeçalho de `cedu-mapa-da-rede.php` (`Version` e `VERSAO`) e no `readme.txt`.
+2. Faça o commit, crie a tag (`git tag -a v1.2.1 -m "1.2.1"`) e envie as duas para o GitHub.
+3. Gere o `.zip` (comando em [Desenvolvimento](#desenvolvimento)) e anexe-o a uma nova release dessa tag.
+
+Os sites verificam no máximo a cada 12 horas; **Painel → Atualizações → Verificar novamente** força a consulta. Para desligar a verificação num site: `define( 'CEMADEN_MAPA_REDE_ATUALIZAR', false );` no `wp-config.php`.
+
 ## Comandos WP-CLI
 
 ```bash
@@ -75,7 +87,7 @@ npm run build
 Para gerar o `.zip` de uma versão (sem `src/`, `package.json` e demais arquivos de desenvolvimento):
 
 ```bash
-git archive --format=zip --prefix=cedu-mapa-da-rede/ -o cedu-mapa-da-rede-1.1.4.zip HEAD
+git archive --format=zip --prefix=cedu-mapa-da-rede/ -o cedu-mapa-da-rede-1.2.0.zip HEAD
 ```
 
 Detalhes técnicos (rota REST, cache, rota de CEP e changelog) estão no [readme.txt](readme.txt).

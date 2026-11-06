@@ -2,7 +2,7 @@
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 1.1.4
+Stable tag: 1.2.0
 License: GPL-2.0-or-later
 
 Mapa da Rede do Cemaden Educação com MapLibre GL JS, sem dependência do JEO.
@@ -62,6 +62,15 @@ Filtro: `cemaden_mapa_rede_mapa_base` (configuração do mapa base).
 
 Quando o JEO não está carregado, o plugin também responde `GET /wp-json/cemaden/v1/endereco/{cep}` (rota do cadastro do tema), no mesmo formato, usando ViaCEP + Nominatim e, como reserva, a sede do município. Proteções: CEP validado; cache por CEP (30 dias) e por endereço (30 dias); no máximo 30 consultas externas por IP a cada 10 minutos (429 acima disso); no máximo 1 chamada por segundo ao Nominatim, sem bloquear o PHP.
 
+== Atualizações ==
+
+O plugin aparece em Painel → Atualizações e em Plugins como os demais ("Atualizar agora"). As versões vêm das Releases de https://github.com/alxmqsjr/cedu-mapa-da-rede (cabeçalho `Update URI`).
+
+* A última release é consultada no máximo a cada 12 horas (1 hora após uma falha). "Verificar novamente" em Painel → Atualizações força a consulta.
+* Só é aceito um `.zip` anexado à release desse repositório, com a pasta `cedu-mapa-da-rede/` dentro (gerado por `git archive`, ver README.md).
+* O servidor precisa acessar `api.github.com` e `github.com` por HTTPS, e o WordPress precisa poder gravar em `wp-content/plugins/` (senão pede dados de FTP; nesse caso, atualize por FTP).
+* Para desligar: `define( 'CEMADEN_MAPA_REDE_ATUALIZAR', false );`
+
 == WP-CLI ==
 
 * `wp cemaden-mapa diagnostico [--detalhes]`: totais por tipo e itens sem localização.
@@ -94,6 +103,11 @@ Qualidade (PHPCS com WordPress Coding Standards 3, instalado via Composer fora d
 * Ícones dos marcadores: tema Cemaden Educação.
 
 == Changelog ==
+
+= 1.2.0 =
+* Atualizações pelo painel do WordPress a partir das Releases do GitHub (`Update URI`, "Ver detalhes" com as notas da release).
+* Legenda sem o item "Localização aproximada (município)" e mais perto da borda inferior do mapa no desktop.
+* Cards da lista com borda de 1px quase invisível, marcando o limite de cada item.
 
 = 1.1.4 =
 * Cabeçalho do plugin com Plugin URI (repositório no GitHub) e Author URI; link do autor nos créditos.

@@ -82,7 +82,7 @@ Qualidade (PHPCS com WordPress Coding Standards 3, instalado via Composer fora d
 
     phpcs --standard=WordPress --extensions=php --ignore=node_modules/*,data/*,build/* .
 
-`data/municipios.php` é gerado por `_dev/mapa-rede/tools/gerar-municipios.php`.
+`data/municipios.php` é gerado a partir de kelvins/municipios-brasileiros (ver Créditos).
 
 == Créditos ==
 

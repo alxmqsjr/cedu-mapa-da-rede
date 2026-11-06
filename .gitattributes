@@ -1,0 +1,9 @@
+# Arquivos de desenvolvimento: ficam no repositório, mas não entram no .zip
+# gerado por `git archive` nem no "Download ZIP" do GitHub.
+/src                export-ignore
+/package.json       export-ignore
+/package-lock.json  export-ignore
+/vite.config.js     export-ignore
+/.gitignore         export-ignore
+/.gitattributes     export-ignore
+/README.md          export-ignore

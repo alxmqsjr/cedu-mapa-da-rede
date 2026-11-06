@@ -16,10 +16,6 @@
 				<img :src="`${marcadores}${slug}.svg`" alt="" width="24" height="24">
 				<span>{{ rotulo }}</span>
 			</li>
-			<li class="cmr-legenda__aproximado">
-				<span class="cmr-legenda__anel" aria-hidden="true"></span>
-				<span>Localização aproximada (município)</span>
-			</li>
 		</ul>
 	</section>
 </template>

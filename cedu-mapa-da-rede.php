@@ -3,7 +3,7 @@
  * Plugin Name:       Cemaden Educação: Mapa da Rede
  * Plugin URI:        https://github.com/alxmqsjr/cedu-mapa-da-rede
  * Description:       Mapa da Rede do Cemaden Educação (ações, inscrições, organizações e atividades da rede) com MapLibre GL JS, sem dependência do JEO.
- * Version:           1.1.4
+ * Version:           1.2.0
  * Requires at least: 6.6
  * Requires PHP:      8.0
  * Author:            Alexandre Marques
@@ -11,6 +11,7 @@
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       cedu-mapa-da-rede
+ * Update URI:        https://github.com/alxmqsjr/cedu-mapa-da-rede
  *
  * @package CemadenMapaRede
  */
@@ -19,7 +20,7 @@ namespace CemadenMapaRede;
 
 defined( 'ABSPATH' ) || exit;
 
-const VERSAO  = '1.1.4';
+const VERSAO  = '1.2.0';
 const ARQUIVO = __FILE__;
 const DIR     = __DIR__;
 
@@ -31,6 +32,7 @@ require_once DIR . '/includes/class-rest.php';
 require_once DIR . '/includes/class-geocodificador.php';
 require_once DIR . '/includes/class-rota-cep.php';
 require_once DIR . '/includes/class-frontend.php';
+require_once DIR . '/includes/class-atualizador.php';
 
 add_action(
 	'plugins_loaded',
@@ -39,6 +41,7 @@ add_action(
 		Rest::registrar();
 		Rota_Cep::registrar();
 		Frontend::registrar();
+		Atualizador::registrar();
 
 		if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			require_once DIR . '/includes/class-cli.php';

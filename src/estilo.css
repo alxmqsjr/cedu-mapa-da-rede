@@ -209,7 +209,7 @@ html body.cmr-pagina {
 .cmr-painel__lista {
 	display: grid;
 	flex: 1;
-	gap: 2rem 1rem;
+	gap: 1rem;
 	grid-auto-rows: min-content;
 	grid-template-columns: repeat(2, calc(50% - 0.5rem));
 	min-height: 0;
@@ -345,15 +345,19 @@ html body.cmr-pagina {
 
 /* Cards. */
 .cmr-cartao {
+	/* Borda quase invisível: só marca o limite de cada card. */
+	border: 1px solid #ECEDEF;
+	border-radius: 0.75rem;
+	box-sizing: border-box;
 	line-height: 1.35;
+	padding: 0.5rem;
 	position: relative;
 }
 
-
 .cmr-cartao__marcador {
-	left: 0.5rem;
+	left: 1rem;
 	position: absolute;
-	top: 0.5rem;
+	top: 1rem;
 	z-index: 1;
 }
 
@@ -509,10 +513,10 @@ html body.cmr-pagina {
 	z-index: 2;
 }
 
-/* Desktop: acima dos créditos do mapa (canto inferior). */
+/* Desktop: mesma distância da borda que à esquerda (os créditos ficam no canto direito). */
 @media (min-width: 992px) {
 	.cmr-legenda {
-		bottom: 2.5rem;
+		bottom: 1rem;
 	}
 }
 
@@ -580,17 +584,6 @@ html body.cmr-pagina {
 
 .cmr-legenda__conteudo li + li {
 	margin-top: 0.375rem;
-}
-
-.cmr-legenda__anel {
-	border: 1.5px solid var(--cmr-primaria);
-	border-radius: 50%;
-	box-sizing: border-box;
-	display: inline-block;
-	flex: none;
-	height: 24px;
-	opacity: 0.7;
-	width: 24px;
 }
 
 .cmr-legenda--recolhida .cmr-legenda__cabecalho {

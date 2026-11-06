@@ -75,7 +75,7 @@ npm run build
 Para gerar o `.zip` de uma versão (sem `src/`, `package.json` e demais arquivos de desenvolvimento):
 
 ```bash
-git archive --format=zip --prefix=cedu-mapa-da-rede/ -o cedu-mapa-da-rede-1.1.3.zip HEAD
+git archive --format=zip --prefix=cedu-mapa-da-rede/ -o cedu-mapa-da-rede-1.1.4.zip HEAD
 ```
 
 Detalhes técnicos (rota REST, cache, rota de CEP e changelog) estão no [readme.txt](readme.txt).

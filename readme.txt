@@ -2,7 +2,7 @@
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 License: GPL-2.0-or-later
 
 Mapa da Rede do Cemaden Educação com MapLibre GL JS, sem dependência do JEO.
@@ -94,6 +94,9 @@ Qualidade (PHPCS com WordPress Coding Standards 3, instalado via Composer fora d
 * Ícones dos marcadores: tema Cemaden Educação.
 
 == Changelog ==
+
+= 1.1.4 =
+* Cabeçalho do plugin com Plugin URI (repositório no GitHub) e Author URI; link do autor nos créditos.
 
 = 1.1.3 =
 * Pasta e arquivo principal renomeados para `cedu-mapa-da-rede` (text domain `cedu-mapa-da-rede`). O nome exibido, a rota REST, as options e o identificador do modelo de página não mudam.

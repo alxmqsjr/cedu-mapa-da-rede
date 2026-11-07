@@ -2,7 +2,7 @@
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 License: GPL-2.0-or-later
 
 Mapa da Rede do Cemaden Educação com MapLibre GL JS, sem dependência do JEO.
@@ -103,6 +103,10 @@ Qualidade (PHPCS com WordPress Coding Standards 3, instalado via Composer fora d
 * Ícones dos marcadores: tema Cemaden Educação.
 
 == Changelog ==
+
+= 1.2.3 =
+* "Ação" passa a "Ação da Campanha" nos cards e nos popups (ações e inscrições).
+* Busca com o texto de ajuda "Buscar por nome ou município", que cabe inteiro também no celular.
 
 = 1.2.2 =
 * "Ações" passa a se chamar "Ações da Campanha" no filtro "Exibindo" (só o nome exibido; o parâmetro da URL continua `tipo=acoes`).

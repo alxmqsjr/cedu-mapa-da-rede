@@ -17,7 +17,7 @@
 							<input
 								v-model="busca"
 								type="search"
-								placeholder="Nome da ação, organização ou município"
+								placeholder="Buscar por nome ou município"
 								autocomplete="off"
 								maxlength="100"
 							>

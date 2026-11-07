@@ -2,7 +2,7 @@
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GPL-2.0-or-later
 
 Mapa da Rede do Cemaden Educação com MapLibre GL JS, sem dependência do JEO.
@@ -11,7 +11,7 @@ Mapa da Rede do Cemaden Educação com MapLibre GL JS, sem dependência do JEO.
 
 Exibe num mapa e numa lista pesquisável:
 
-* Ações: CPTs `acao` e `inscricoes` (exibidos juntos como "Ações");
+* Ações: CPTs `acao` e `inscricoes` (exibidos juntos como "Ações da Campanha");
 * Organizações: CPT `organizacao`;
 * Atividades da rede: CPT `atividade_da_rede`.
 
@@ -103,6 +103,10 @@ Qualidade (PHPCS com WordPress Coding Standards 3, instalado via Composer fora d
 * Ícones dos marcadores: tema Cemaden Educação.
 
 == Changelog ==
+
+= 1.2.2 =
+* "Ações" passa a se chamar "Ações da Campanha" no filtro "Exibindo" (só o nome exibido; o parâmetro da URL continua `tipo=acoes`).
+* Sombra da lista de resultados um pouco mais forte.
 
 = 1.2.1 =
 * Lista de resultados com sombra suave em volta, marcando o limite da área que rola.

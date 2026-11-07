@@ -51,13 +51,13 @@ final class Config {
 	/**
 	 * Grupos do seletor "Exibindo" (slug => rótulo).
 	 *
-	 * "Ações" reúne os CPTs `acao` e `inscricoes`.
+	 * "Ações da Campanha" reúne os CPTs `acao` e `inscricoes`.
 	 *
 	 * @return array<string,string>
 	 */
 	public static function grupos(): array {
 		return array(
-			'acoes'        => __( 'Ações', 'cedu-mapa-da-rede' ),
+			'acoes'        => __( 'Ações da Campanha', 'cedu-mapa-da-rede' ),
 			'organizacoes' => __( 'Organizações', 'cedu-mapa-da-rede' ),
 			'atividades'   => __( 'Atividades da rede', 'cedu-mapa-da-rede' ),
 		);

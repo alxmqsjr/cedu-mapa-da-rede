@@ -2,7 +2,7 @@
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 1.2.3
+Stable tag: 1.3.0
 License: GPL-2.0-or-later
 
 Mapa da Rede do Cemaden Educação com MapLibre GL JS, sem dependência do JEO.
@@ -103,6 +103,10 @@ Qualidade (PHPCS com WordPress Coding Standards 3, instalado via Composer fora d
 * Ícones dos marcadores: tema Cemaden Educação.
 
 == Changelog ==
+
+= 1.3.0 =
+* Botão "Início do mapa" na linha do título "Menu do mapa": volta ao centro e ao zoom de quando a página abriu (fecha popup e leque; no celular, recolhe a gaveta).
+* "Menu do mapa" alinhado à esquerda, com o botão à direita.
 
 = 1.2.3 =
 * "Ação" passa a "Ação da Campanha" nos cards e nos popups (ações e inscrições).

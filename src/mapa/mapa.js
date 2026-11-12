@@ -61,12 +61,14 @@ function carregarImagem(mapa, id, url) {
 export function criarMapa({ container, config, buscarItem, aoSelecionar }) {
 	const urlMarcador = (categoria) => `${config.marcadores}${categoria}.svg`
 	const pequeno = window.innerWidth < 600
+	// Enquadramento de quando a página abre ("Início do mapa" volta para ele).
+	const zoomInicial = pequeno ? config.zoom.mobile : config.zoom.desktop
 
 	const mapa = new MapaGL({
 		container,
 		style: config.estilo,
 		center: config.centro,
-		zoom: pequeno ? config.zoom.mobile : config.zoom.desktop,
+		zoom: zoomInicial,
 		maxZoom: 18,
 		attributionControl: { compact: true },
 		locale: LOCALE,
@@ -334,6 +336,13 @@ export function criarMapa({ container, config, buscarItem, aoSelecionar }) {
 		},
 
 		fecharPopup,
+
+		/** Volta ao centro e ao zoom de quando a página abriu. */
+		voltarAoInicio() {
+			aranha?.fechar()
+			fecharPopup()
+			mapa.flyTo({ center: config.centro, zoom: zoomInicial, bearing: 0, pitch: 0 })
+		},
 
 		destruir() {
 			clearTimeout(limiteCarga)

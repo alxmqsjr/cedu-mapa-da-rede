@@ -4,13 +4,21 @@
 			<div class="cmr-painel__caixa">
 				<header class="cmr-painel__cabecalho">
 					<h1 class="cmr-sr">{{ config.titulo }}</h1>
-					<button
-						type="button"
-						class="cmr-painel__alternar"
-						:aria-expanded="expandido ? 'true' : 'false'"
-						:aria-controls="idConteudo"
-						@click="expandido = !expandido"
-					>Menu do mapa</button>
+					<div class="cmr-painel__topo">
+						<button
+							type="button"
+							class="cmr-painel__alternar"
+							:aria-expanded="expandido ? 'true' : 'false'"
+							:aria-controls="idConteudo"
+							@click="expandido = !expandido"
+						>Menu do mapa</button>
+						<button
+							type="button"
+							class="cmr-painel__inicio"
+							title="Voltar ao enquadramento inicial do mapa"
+							@click="voltarAoInicio"
+						>Início do mapa</button>
+					</div>
 					<div :id="idConteudo" class="cmr-painel__filtros" role="search">
 						<label class="cmr-campo">
 							<span>Buscar:</span>
@@ -213,6 +221,15 @@ async function selecionarNoMapa(chave) {
 function localizar(item) {
 	selecionado.value = item.chave
 	mapa?.mostrarItem(item)
+	if (window.innerWidth < 992) {
+		expandido.value = false
+	}
+}
+
+/** "Início do mapa": volta ao enquadramento de quando a página abriu. */
+function voltarAoInicio() {
+	selecionado.value = ''
+	mapa?.voltarAoInicio()
 	if (window.innerWidth < 992) {
 		expandido.value = false
 	}

@@ -113,30 +113,65 @@ html body.cmr-pagina {
 	margin-bottom: 1.5rem;
 }
 
-.cmr-painel__alternar {
-	background: none;
-	border: 0;
+/* Linha do título: "Menu do mapa" à esquerda e "Início do mapa" à direita. */
+.cmr-painel__topo {
+	align-items: center;
 	border-bottom: 1px solid #869B8D;
-	color: var(--cmr-primaria);
-	cursor: pointer;
-	display: block;
-	font: inherit;
-	font-size: 1.25rem;
-	font-weight: bold;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem 1rem;
+	justify-content: space-between;
 	margin: 0 0 1rem;
 	padding: 0 0 0.5rem;
-	text-align: center;
-	width: 100%;
 }
 
-.cmr-painel__alternar::before {
+/* Alça da gaveta (celular): ocupa uma linha própria, centralizada. */
+.cmr-painel__topo::before {
 	background: #D9D9D9;
 	border-radius: 0.125rem;
 	content: "";
-	display: block;
+	flex: 0 0 4rem;
 	height: 0.25rem;
-	margin: 0 auto 0.5rem;
-	width: 4rem;
+	margin: 0 calc(50% - 2rem);
+}
+
+.cmr-painel__alternar {
+	background: none;
+	border: 0;
+	color: var(--cmr-primaria);
+	cursor: pointer;
+	flex: 1 1 auto;
+	font: inherit;
+	font-size: 1.25rem;
+	font-weight: bold;
+	margin: 0;
+	padding: 0;
+	text-align: left;
+}
+
+.cmr-app .cmr-painel__inicio {
+	background-color: var(--cmr-primaria);
+	border: 0;
+	border-radius: 0.5rem;
+	color: #FFFFFF;
+	cursor: pointer;
+	flex: none;
+	font: inherit;
+	font-size: 0.875rem;
+	font-weight: bold;
+	line-height: 1.5;
+	margin: 0;
+	padding: 0.375rem 0.875rem;
+	white-space: nowrap;
+}
+
+.cmr-app .cmr-painel__inicio:hover {
+	background-color: #0A4A94;
+}
+
+.cmr-app .cmr-painel__inicio:focus-visible {
+	outline: 2px solid var(--cmr-primaria);
+	outline-offset: 2px;
 }
 
 @media (min-width: 992px) {
@@ -145,7 +180,7 @@ html body.cmr-pagina {
 		pointer-events: none;
 	}
 
-	.cmr-painel__alternar::before {
+	.cmr-painel__topo::before {
 		display: none;
 	}
 }
@@ -252,7 +287,7 @@ html body.cmr-pagina {
 		margin: 0;
 	}
 
-	.cmr-painel:not(.cmr-painel--expandido) .cmr-painel__alternar {
+	.cmr-painel:not(.cmr-painel--expandido) .cmr-painel__topo {
 		border: 0;
 		margin: 0;
 		padding: 0;

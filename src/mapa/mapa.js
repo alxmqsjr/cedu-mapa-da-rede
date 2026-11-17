@@ -13,6 +13,8 @@ const CAMADA_CLUSTERS = 'cmr-clusters'
 const CAMADA_CONTAGEM = 'cmr-contagem'
 const CAMADA_DIVISAS = 'cmr-divisas-estaduais'
 const FONTE_DIVISAS = 'cmr-divisas'
+const CAMADA_FRONTEIRA = 'cmr-fronteira-brasil'
+const FONTE_FRONTEIRA = 'cmr-fronteira'
 
 /**
  * Clique no cluster: aproxima até ele se separar; abre em leque quando ele só
@@ -168,8 +170,32 @@ export function criarMapa({ container, config, buscarItem, aoSelecionar }) {
 					layout: { 'line-join': 'round', 'line-cap': 'round' },
 					paint: {
 						'line-color': config.corDivisas,
-						'line-opacity': ['interpolate', ['linear'], ['zoom'], 6, 0.55, 8, 0],
-						'line-width': ['interpolate', ['linear'], ['zoom'], 3, 0.6, 6, 1, 8, 1.2],
+						'line-opacity': ['interpolate', ['linear'], ['zoom'], 6, 0.6, 8, 0],
+						'line-width': ['interpolate', ['linear'], ['zoom'], 3, 0.5, 6, 0.8, 8, 1],
+					},
+				},
+				primeiroRotulo,
+			)
+		}
+
+		/*
+		 * Contorno do Brasil (malha do IBGE, mesma qualidade e mesmo
+		 * comportamento das divisas), mais escuro e mais grosso, por cima delas.
+		 */
+		if (config.corFronteira && config.fronteira && !mapa.getSource(FONTE_FRONTEIRA)) {
+			mapa.addSource(FONTE_FRONTEIRA, { type: 'geojson', data: config.fronteira })
+			const primeiroRotulo = camadas.find((camada) => camada.type === 'symbol')?.id
+			mapa.addLayer(
+				{
+					id: CAMADA_FRONTEIRA,
+					type: 'line',
+					source: FONTE_FRONTEIRA,
+					maxzoom: 8,
+					layout: { 'line-join': 'round', 'line-cap': 'round' },
+					paint: {
+						'line-color': config.corFronteira,
+						'line-opacity': ['interpolate', ['linear'], ['zoom'], 6, 0.8, 8, 0],
+						'line-width': ['interpolate', ['linear'], ['zoom'], 3, 1.2, 6, 1.8, 8, 2],
 					},
 				},
 				primeiroRotulo,

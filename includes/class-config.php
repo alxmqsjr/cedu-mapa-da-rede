@@ -32,7 +32,12 @@ final class Config {
 	/**
 	 * Cor padrão das divisas estaduais.
 	 */
-	const COR_DIVISAS = '#07346B';
+	const COR_DIVISAS = '#8FA8CC';
+
+	/**
+	 * Cor padrão do contorno do Brasil.
+	 */
+	const COR_FRONTEIRA = '#07346B';
 
 	/**
 	 * Categorias exibidas no mapa, na ordem da legenda (slug => rótulo).
@@ -95,7 +100,12 @@ final class Config {
 	 * Constante CEMADEN_MAPA_REDE_COR_DIVISAS: cor hexadecimal ou '' para não
 	 * desenhar.
 	 *
-	 * @return array{estilo:mixed,fonte:string[],reserva:array,cor_agua:string,cor_divisas:string}
+	 * 'cor_fronteira' é a cor do contorno do Brasil (malha do IBGE em
+	 * assets/brasil-ibge.json), mais forte que as divisas e com o mesmo
+	 * comportamento. Constante CEMADEN_MAPA_REDE_COR_FRONTEIRA: cor hexadecimal
+	 * ou '' para não desenhar.
+	 *
+	 * @return array{estilo:mixed,fonte:string[],reserva:array,cor_agua:string,cor_divisas:string,cor_fronteira:string}
 	 */
 	public static function mapa_base(): array {
 		$escolha = defined( 'CEMADEN_MAPA_REDE_ESTILO' ) ? (string) CEMADEN_MAPA_REDE_ESTILO : 'positron';
@@ -116,9 +126,10 @@ final class Config {
 			) : $osm;
 		}
 
-		$config['reserva']  = $osm;
-		$config['cor_agua']    = defined( 'CEMADEN_MAPA_REDE_COR_AGUA' ) ? (string) CEMADEN_MAPA_REDE_COR_AGUA : self::COR_AGUA;
-		$config['cor_divisas'] = defined( 'CEMADEN_MAPA_REDE_COR_DIVISAS' ) ? (string) CEMADEN_MAPA_REDE_COR_DIVISAS : self::COR_DIVISAS;
+		$config['reserva']       = $osm;
+		$config['cor_agua']      = defined( 'CEMADEN_MAPA_REDE_COR_AGUA' ) ? (string) CEMADEN_MAPA_REDE_COR_AGUA : self::COR_AGUA;
+		$config['cor_divisas']   = defined( 'CEMADEN_MAPA_REDE_COR_DIVISAS' ) ? (string) CEMADEN_MAPA_REDE_COR_DIVISAS : self::COR_DIVISAS;
+		$config['cor_fronteira'] = defined( 'CEMADEN_MAPA_REDE_COR_FRONTEIRA' ) ? (string) CEMADEN_MAPA_REDE_COR_FRONTEIRA : self::COR_FRONTEIRA;
 
 		/**
 		 * Filtra a configuração do mapa base.
@@ -126,7 +137,8 @@ final class Config {
 		 * @param array $config 'estilo' (URL ou objeto de estilo), 'fonte' (text-font dos números dos
 		 *                      clusters, precisa existir nos glyphs do estilo), 'reserva' (mesmo formato)
 		 *                      'cor_agua' (cor hexadecimal da água; '' mantém a do estilo)
-		 *                      e 'cor_divisas' (cor hexadecimal das divisas estaduais; '' não desenha).
+		 *                      'cor_divisas' (cor hexadecimal das divisas estaduais; '' não desenha)
+		 *                      e 'cor_fronteira' (cor hexadecimal do contorno do Brasil; '' não desenha).
 		 */
 		return apply_filters( 'cemaden_mapa_rede_mapa_base', $config );
 	}

@@ -52,8 +52,11 @@ define( 'CEMADEN_MAPA_REDE_ESTILO', 'positron' );
 // Cor da água (mar, lagos e rios). Padrão '#bceeff'; '' mantém a cor original do estilo.
 define( 'CEMADEN_MAPA_REDE_COR_AGUA', '#bceeff' );
 
-// Cor das divisas estaduais (malha do IBGE). Padrão '#07346B'; '' não desenha.
-define( 'CEMADEN_MAPA_REDE_COR_DIVISAS', '#07346B' );
+// Cor das divisas estaduais (malha do IBGE). Padrão '#8FA8CC'; '' não desenha.
+define( 'CEMADEN_MAPA_REDE_COR_DIVISAS', '#8FA8CC' );
+
+// Cor do contorno do Brasil (malha do IBGE). Padrão '#07346B'; '' não desenha.
+define( 'CEMADEN_MAPA_REDE_COR_FRONTEIRA', '#07346B' );
 ```
 
 Se o mapa base não responder, o mapa troca sozinho para um mapa de reserva (OpenStreetMap).
@@ -100,7 +103,7 @@ Detalhes técnicos (rota REST, cache, rota de CEP e changelog) estão no [readme
 - Desenvolvimento: **[Alexandre Marques](https://github.com/alxmqsjr)**.
 - [MapLibre GL JS](https://github.com/maplibre/maplibre-gl-js) (BSD-3-Clause) e [Vue](https://github.com/vuejs/core) (MIT): ver `build/LICENSES.txt`.
 - Sedes municipais: [kelvins/municipios-brasileiros](https://github.com/kelvins/municipios-brasileiros) (MIT), dados do IBGE: ver `data/LICENSE-municipios.txt`.
-- Divisas estaduais: malha territorial do [IBGE](https://servicodados.ibge.gov.br/api/docs/malhas?versao=3) (qualidade mínima), em `assets/estados-ibge.json`.
+- Divisas estaduais e contorno do Brasil: malhas territoriais do [IBGE](https://servicodados.ibge.gov.br/api/docs/malhas?versao=3) (qualidade mínima), em `assets/estados-ibge.json` e `assets/brasil-ibge.json`.
 - Mapa base: © [OpenFreeMap](https://openfreemap.org/), © [OpenMapTiles](https://openmaptiles.org/), dados © [colaboradores do OpenStreetMap](https://www.openstreetmap.org/copyright).
 - Ícones dos marcadores: tema Cemaden Educação.
 

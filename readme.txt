@@ -47,11 +47,16 @@ Se o mapa base não carregar (serviço fora do ar ou sem resposta em 15 s), o fr
 * cor da água (mar, lagos e rios) no mapa base vetorial; padrão `#bceeff`;
 * `''` mantém a cor original do estilo. Não se aplica ao mapa de reserva (imagens do OSM).
 
-`define( 'CEMADEN_MAPA_REDE_COR_DIVISAS', '#07346B' );`
+`define( 'CEMADEN_MAPA_REDE_COR_DIVISAS', '#8FA8CC' );`
 
-* cor das divisas dos 27 estados (malha do IBGE em `assets/estados-ibge.json`); padrão `#07346B`;
+* cor das divisas dos 27 estados (malha do IBGE em `assets/estados-ibge.json`); padrão `#8FA8CC`;
 * a linha some entre os zooms 6 e 8, quando o mapa base passa a desenhar as divisas detalhadas;
 * vale também para o mapa de reserva; `''` não desenha as divisas.
+
+`define( 'CEMADEN_MAPA_REDE_COR_FRONTEIRA', '#07346B' );`
+
+* cor do contorno do Brasil, mais forte que as divisas (malha do IBGE em `assets/brasil-ibge.json`); padrão `#07346B`;
+* mesmo comportamento das divisas (some entre os zooms 6 e 8, vale para o mapa de reserva); `''` não desenha.
 
 Nenhuma chave ou token é necessário.
 
@@ -105,16 +110,17 @@ Qualidade (PHPCS com WordPress Coding Standards 3, instalado via Composer fora d
 
 * MapLibre GL JS (BSD-3-Clause) e Vue (MIT): ver build/LICENSES.txt.
 * Sedes municipais: kelvins/municipios-brasileiros (MIT), dados do IBGE: ver data/LICENSE-municipios.txt.
-* Divisas estaduais: malha territorial do IBGE (API de Malhas v3, qualidade mínima), em assets/estados-ibge.json.
+* Divisas estaduais e contorno do Brasil: malhas territoriais do IBGE (API de Malhas v3, qualidade mínima), em assets/estados-ibge.json e assets/brasil-ibge.json.
 * Mapa base: © OpenFreeMap, © OpenMapTiles, dados © colaboradores do OpenStreetMap.
 * Ícones dos marcadores: tema Cemaden Educação.
 
 == Changelog ==
 
 = 1.4.0 =
-* Divisas dos 27 estados no mapa, em azul suave, só no Brasil (malha do IBGE, arquivo estático do plugin, 98 KB).
-* A linha some entre os zooms 6 e 8, onde o mapa base passa a desenhar as divisas detalhadas; fica abaixo dos rótulos e dos marcadores.
-* Funciona também no mapa de reserva. Cor configurável pela constante CEMADEN_MAPA_REDE_COR_DIVISAS ('' desliga).
+* Divisas dos 27 estados no mapa, em linha fina azul-clara, só no Brasil (malha do IBGE, arquivo estático do plugin, 98 KB).
+* Contorno do Brasil em azul-escuro, mais grosso, por cima das divisas (malha do IBGE, 13 KB).
+* As linhas somem entre os zooms 6 e 8, onde o mapa base passa a desenhar as divisas detalhadas; ficam abaixo dos rótulos e dos marcadores.
+* Funcionam também no mapa de reserva. Cores configuráveis pelas constantes CEMADEN_MAPA_REDE_COR_DIVISAS e CEMADEN_MAPA_REDE_COR_FRONTEIRA ('' desliga).
 
 = 1.3.0 =
 * Botão "Início do mapa" na linha do título "Menu do mapa": volta ao centro e ao zoom de quando a página abriu (fecha popup e leque; no celular, recolhe a gaveta).

@@ -11,6 +11,8 @@ const CAMADA_PINOS = 'cmr-pinos'
 const CAMADA_APROXIMADOS = 'cmr-aproximados'
 const CAMADA_CLUSTERS = 'cmr-clusters'
 const CAMADA_CONTAGEM = 'cmr-contagem'
+const CAMADA_DIVISAS = 'cmr-divisas-estaduais'
+const FONTE_DIVISAS = 'cmr-divisas'
 
 /**
  * Clique no cluster: aproxima até ele se separar; abre em leque quando ele só
@@ -116,12 +118,15 @@ export function criarMapa({ container, config, buscarItem, aoSelecionar }) {
 	})
 
 	/*
-	 * Ajustes no mapa base vetorial (sem efeito no raster de reserva):
-	 * - rótulos em português ("Brasil", "Bolívia"), com o nome local como reserva;
-	 * - cor da água (config.corAgua).
+	 * Ajustes no mapa base, a cada estilo carregado:
+	 * - rótulos em português ("Brasil", "Bolívia"), com o nome local como reserva
+	 *   (só no vetorial);
+	 * - cor da água (config.corAgua; só no vetorial);
+	 * - divisas estaduais (config.corDivisas e config.divisas; nos dois).
 	 */
 	mapa.on('style.load', () => {
-		for (const camada of mapa.getStyle()?.layers || []) {
+		const camadas = mapa.getStyle()?.layers || []
+		for (const camada of camadas) {
 			if (camada.type !== 'symbol') {
 				continue
 			}
@@ -131,14 +136,44 @@ export function criarMapa({ container, config, buscarItem, aoSelecionar }) {
 			}
 		}
 
-		if (!config.corAgua) {
-			return
+		if (config.corAgua) {
+			if (mapa.getLayer('water')?.type === 'fill') {
+				mapa.setPaintProperty('water', 'fill-color', config.corAgua)
+			}
+			if (mapa.getLayer('waterway')?.type === 'line') {
+				mapa.setPaintProperty('waterway', 'line-color', config.corAgua)
+			}
 		}
-		if (mapa.getLayer('water')?.type === 'fill') {
-			mapa.setPaintProperty('water', 'fill-color', config.corAgua)
-		}
-		if (mapa.getLayer('waterway')?.type === 'line') {
-			mapa.setPaintProperty('waterway', 'line-color', config.corAgua)
+
+		/*
+		 * Divisas estaduais: contornos dos 27 estados da malha do IBGE
+		 * (qualidade mínima, arquivo estático do plugin). Os tiles do mapa base
+		 * não servem aqui porque não dizem a que país cada divisa pertence e
+		 * mostrariam também as províncias dos vizinhos.
+		 *
+		 * A malha é simplificada, então a linha some entre os zooms 6 e 8; a
+		 * partir do 8 o próprio mapa base desenha as divisas detalhadas. Fica
+		 * abaixo dos rótulos do mapa base e dos marcadores. Vale também para o
+		 * mapa de reserva (raster), onde é acrescentada por cima dos tiles.
+		 */
+		if (config.corDivisas && config.divisas && !mapa.getSource(FONTE_DIVISAS)) {
+			mapa.addSource(FONTE_DIVISAS, { type: 'geojson', data: config.divisas })
+			const primeiroRotulo = camadas.find((camada) => camada.type === 'symbol')?.id
+			mapa.addLayer(
+				{
+					id: CAMADA_DIVISAS,
+					type: 'line',
+					source: FONTE_DIVISAS,
+					maxzoom: 8,
+					layout: { 'line-join': 'round', 'line-cap': 'round' },
+					paint: {
+						'line-color': config.corDivisas,
+						'line-opacity': ['interpolate', ['linear'], ['zoom'], 6, 0.55, 8, 0],
+						'line-width': ['interpolate', ['linear'], ['zoom'], 3, 0.6, 6, 1, 8, 1.2],
+					},
+				},
+				primeiroRotulo,
+			)
 		}
 	})
 

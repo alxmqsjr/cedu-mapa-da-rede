@@ -153,6 +153,8 @@ final class Frontend {
 			'fonte'      => $base['fonte'],
 			'reserva'    => $base['reserva'],
 			'corAgua'    => (string) sanitize_hex_color( $base['cor_agua'] ?? '' ),
+			'corDivisas' => (string) sanitize_hex_color( $base['cor_divisas'] ?? '' ),
+			'divisas'    => add_query_arg( 'ver', VERSAO, plugins_url( 'assets/estados-ibge.json', ARQUIVO ) ),
 			'centro'     => array( -54, -14 ),
 			'zoom'       => array(
 				'desktop' => 3.75,

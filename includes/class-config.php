@@ -30,6 +30,11 @@ final class Config {
 	const COR_AGUA = '#bceeff';
 
 	/**
+	 * Cor padrão das divisas estaduais.
+	 */
+	const COR_DIVISAS = '#07346B';
+
+	/**
 	 * Categorias exibidas no mapa, na ordem da legenda (slug => rótulo).
 	 *
 	 * Os slugs são os valores do meta `institution_type` das organizações.
@@ -85,7 +90,12 @@ final class Config {
 	 * (sem efeito no raster do OSM). Constante CEMADEN_MAPA_REDE_COR_AGUA:
 	 * cor hexadecimal ou '' para manter a cor original do estilo.
 	 *
-	 * @return array{estilo:mixed,fonte:string[],reserva:array,cor_agua:string}
+	 * 'cor_divisas' é a cor das divisas estaduais (malha do IBGE em
+	 * assets/estados-ibge.json), desenhadas até o zoom 8 em qualquer mapa base.
+	 * Constante CEMADEN_MAPA_REDE_COR_DIVISAS: cor hexadecimal ou '' para não
+	 * desenhar.
+	 *
+	 * @return array{estilo:mixed,fonte:string[],reserva:array,cor_agua:string,cor_divisas:string}
 	 */
 	public static function mapa_base(): array {
 		$escolha = defined( 'CEMADEN_MAPA_REDE_ESTILO' ) ? (string) CEMADEN_MAPA_REDE_ESTILO : 'positron';
@@ -107,14 +117,16 @@ final class Config {
 		}
 
 		$config['reserva']  = $osm;
-		$config['cor_agua'] = defined( 'CEMADEN_MAPA_REDE_COR_AGUA' ) ? (string) CEMADEN_MAPA_REDE_COR_AGUA : self::COR_AGUA;
+		$config['cor_agua']    = defined( 'CEMADEN_MAPA_REDE_COR_AGUA' ) ? (string) CEMADEN_MAPA_REDE_COR_AGUA : self::COR_AGUA;
+		$config['cor_divisas'] = defined( 'CEMADEN_MAPA_REDE_COR_DIVISAS' ) ? (string) CEMADEN_MAPA_REDE_COR_DIVISAS : self::COR_DIVISAS;
 
 		/**
 		 * Filtra a configuração do mapa base.
 		 *
 		 * @param array $config 'estilo' (URL ou objeto de estilo), 'fonte' (text-font dos números dos
 		 *                      clusters, precisa existir nos glyphs do estilo), 'reserva' (mesmo formato)
-		 *                      e 'cor_agua' (cor hexadecimal da água; '' mantém a do estilo).
+		 *                      'cor_agua' (cor hexadecimal da água; '' mantém a do estilo)
+		 *                      e 'cor_divisas' (cor hexadecimal das divisas estaduais; '' não desenha).
 		 */
 		return apply_filters( 'cemaden_mapa_rede_mapa_base', $config );
 	}

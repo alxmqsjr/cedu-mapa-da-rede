@@ -2,7 +2,7 @@
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 License: GPL-2.0-or-later
 
 Mapa da Rede do Cemaden Educação com MapLibre GL JS, sem dependência do JEO.
@@ -116,11 +116,14 @@ Qualidade (PHPCS com WordPress Coding Standards 3, instalado via Composer fora d
 
 == Changelog ==
 
+= 1.4.1 =
+* Divisas dos estados mais claras e finas (#8FA8CC, 0,5 a 1 px).
+* Contorno do Brasil em azul-escuro, mais grosso, por cima das divisas (malha do IBGE, assets/brasil-ibge.json, 13 KB). Cor pela constante CEMADEN_MAPA_REDE_COR_FRONTEIRA ('' desliga).
+
 = 1.4.0 =
-* Divisas dos 27 estados no mapa, em linha fina azul-clara, só no Brasil (malha do IBGE, arquivo estático do plugin, 98 KB).
-* Contorno do Brasil em azul-escuro, mais grosso, por cima das divisas (malha do IBGE, 13 KB).
-* As linhas somem entre os zooms 6 e 8, onde o mapa base passa a desenhar as divisas detalhadas; ficam abaixo dos rótulos e dos marcadores.
-* Funcionam também no mapa de reserva. Cores configuráveis pelas constantes CEMADEN_MAPA_REDE_COR_DIVISAS e CEMADEN_MAPA_REDE_COR_FRONTEIRA ('' desliga).
+* Divisas dos 27 estados no mapa, só no Brasil (malha do IBGE, arquivo estático do plugin, 98 KB).
+* A linha some entre os zooms 6 e 8, onde o mapa base passa a desenhar as divisas detalhadas; fica abaixo dos rótulos e dos marcadores.
+* Funciona também no mapa de reserva. Cor configurável pela constante CEMADEN_MAPA_REDE_COR_DIVISAS ('' desliga).
 
 = 1.3.0 =
 * Botão "Início do mapa" na linha do título "Menu do mapa": volta ao centro e ao zoom de quando a página abriu (fecha popup e leque; no celular, recolhe a gaveta).
